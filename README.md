@@ -11,7 +11,7 @@ An MCP (Model Context Protocol) server providing real-time Google Search via the
 
 ## Prerequisites
 
-- Node.js 18+
+- Node.js 20+
 
 ## Installation
 
@@ -58,14 +58,12 @@ Configure in your MCP client (Claude Desktop, Codex CLI, etc.):
 
 ## Authentication
 
-> **Note**: Vertex AI was renamed to **Gemini Enterprise Agent Platform** at Google Cloud Next 2026 (April 2026). The API endpoints and functionality remain the same.
+> **Note**: Google Cloud positions **Gemini Enterprise Agent Platform** as the evolution of Vertex AI. Moving forward, Vertex AI services and roadmap updates are delivered through Agent Platform.
 
 ### Method 1: Gemini API Key (Simplest)
 
 Get your key from [Google AI Studio](https://aistudio.google.com/api-keys).
-
-- **Free Tier**: 500 grounded searches/day, no credit card needed.
-- **Paid Tier 1**: 1,500 grounded searches/day. Requires setting up billing (Prepay, min $10). Note: AI Studio Prepay credits are separate from Google Cloud billing credits — you cannot use Google Cloud's $300 free credits or existing Cloud billing balance for AI Studio. Prepay credits expire after 12 months. At Tier 3 you can switch to Postpay (pay-as-you-go).
+Billing, quotas, and eligibility vary by tier and may change. See the official [Gemini API pricing](https://ai.google.dev/gemini-api/docs/pricing) and [billing](https://ai.google.dev/gemini-api/docs/billing) docs for current details.
 
 ```json
 {
@@ -83,7 +81,8 @@ Get your key from [Google AI Studio](https://aistudio.google.com/api-keys).
 
 ### Method 2: Vertex AI Express Mode (Recommended for Cloud Users)
 
-Uses Google Cloud billing ($300 free credits). Get an API key from [Google Cloud Agent Platform](https://console.cloud.google.com/agent-platform/overview).
+For new users, express mode offers a 90-day free trial without requiring billing information up front. Get an API key from [Google Cloud Agent Platform](https://console.cloud.google.com/agent-platform/overview).
+Availability, billing, and quotas may change. See the official [Vertex AI in express mode overview](https://cloud.google.com/vertex-ai/generative-ai/docs/start/express-mode/overview) for current details.
 
 ```json
 {
@@ -93,7 +92,7 @@ Uses Google Cloud billing ($300 free credits). Get an API key from [Google Cloud
       "args": ["@kybrcore/gemini-search-mcp"],
       "env": {
         "USE_VERTEX_AI": "true",
-        "VERTEX_EXPRESS_MODE_API_KEY": "your-vertex-express-api-key"
+        "VERTEX_EXPRESS_MODE_API_KEY": "your-vertex-express-mode-api-key"
       }
     }
   }
@@ -152,6 +151,18 @@ Create a service account in [Google Cloud Console](https://console.cloud.google.
 
 Performs a grounded web search with citations and source URIs.
 
+Best used for:
+
+- Broad or open-ended queries where a synthesized answer is more useful than a list of links
+- News, background research, historical topics, and general fact-finding
+- Cases where inline citations and source URIs help with quick verification
+
+Less suitable for:
+
+- Finding exact official docs, API references, or product specification pages
+- Queries where raw search result ordering matters more than an AI summary
+- Exhaustive webpage discovery, page-by-page comparison, or pinpointing one exact URL
+
 ```json
 { "query": "Who won Euro 2024?" }
 ```
@@ -179,20 +190,9 @@ Sources:
 | `GOOGLE_APPLICATION_CREDENTIALS` | Path to service account JSON key | - |
 | `GEMINI_MODEL` | Gemini model to use | `gemini-2.5-flash` |
 
-## Free Tier Limits
+## Pricing & Quotas
 
-Default model (`gemini-2.5-flash`) grounding quotas:
-
-| Method | Grounded Searches/day | Billing |
-|--------|----------------------|---------|
-| AI Studio Free Tier | 500 | No billing required |
-| AI Studio Paid Tier (any) | 1,500 | Prepay or Postpay |
-| Vertex AI (any method) | 1,500 | Google Cloud billing |
-
-Notes:
-- Paid Tier grounding quota is the same across Tier 1/2/3. Higher tiers give higher RPM/TPM, not more free grounding.
-- AI Studio Paid Tier defaults to Prepay. AI Studio Prepay credits are **separate from and cannot be used with** Google Cloud billing account credits. Google Cloud credits (including the $300 free trial) only work with Vertex AI / Agent Platform services.
-- After free quota is exceeded: $35/1,000 grounded prompts (same price for both AI Studio and Vertex AI).
+Pricing, quotas, and availability vary by model, tier, and platform. Check [Gemini API Pricing](https://ai.google.dev/gemini-api/docs/pricing), [Gemini API billing](https://ai.google.dev/gemini-api/docs/billing), and [Vertex AI pricing](https://cloud.google.com/gemini-enterprise-agent-platform/generative-ai/pricing) for current details.
 
 ## Development
 
@@ -276,5 +276,3 @@ npm run dev:cli -- "your search query"
 ## License
 
 MIT
-
-

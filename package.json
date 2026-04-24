@@ -1,6 +1,6 @@
 {
   "name": "@kybrcore/gemini-search-mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MCP server for real-time Google Search via Gemini API with search grounding (AI Studio, Vertex AI Express Mode, ADC, Service Account)",
   "type": "module",
   "main": "dist/index.js",
@@ -37,6 +37,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kybrcore/gemini-search-mcp.git"
+  },
+  "engines": {
+    "node": ">=20"
   },
   "dependencies": {
     "@google/genai": "^1.50.1",

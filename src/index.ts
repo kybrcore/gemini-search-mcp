@@ -40,7 +40,7 @@ server.registerTool(
   'gemini_search',
   {
     description:
-      'Search the web using Google Search grounding via the Gemini API. Unlike general web search tools, this returns AI-synthesized answers with inline citations ([1]) and source URIs, making it ideal for queries that require accurate, referenced, and up-to-date information.',
+      'Search the web using Google Search grounding via the Gemini API. Best for broad or open-ended queries where an AI-synthesized answer with citations is more useful than a list of links, such as news, background research, historical topics, and general fact-finding. Less suitable for finding exact official docs, API references, specific webpages, or exhaustive raw search results, where a traditional web search tool is usually better.',
     inputSchema: {
       query: z.string().min(1).describe('The search query to find information on the web.'),
     },
