@@ -7,7 +7,7 @@ An MCP (Model Context Protocol) server providing real-time Google Search via the
 - **Real-time web search** with Google Search grounding via Gemini API
 - **Citation support** with UTF-8 correct byte-level positioning (handles CJK characters)
 - **4 authentication methods**: Gemini API Key, Vertex AI Express Mode, ADC, Service Account
-- Compatible with Claude Desktop, Codex CLI, and other MCP clients
+- Compatible with Claude Code, Codex CLI, OpenCode, and other MCP clients
 
 ## Prerequisites
 
@@ -40,7 +40,39 @@ gemini-search "your search query"
 
 ### MCP Server
 
-Configure in your MCP client (Claude Desktop, Codex CLI, etc.):
+Configure in your MCP client:
+
+#### Codex CLI
+
+```bash
+codex mcp add gemini-search --env GEMINI_API_KEY=your-key -- npx @kybrcore/gemini-search-mcp
+```
+
+#### Claude Code
+
+```bash
+claude mcp add gemini-search -e GEMINI_API_KEY=your-key -- npx @kybrcore/gemini-search-mcp
+```
+
+#### OpenCode
+
+Add to `~/.config/opencode/config.json`:
+
+```json
+{
+  "mcp": {
+    "gemini-search": {
+      "command": "npx",
+      "args": ["@kybrcore/gemini-search-mcp"],
+      "env": {
+        "GEMINI_API_KEY": "your-key"
+      }
+    }
+  }
+}
+```
+
+#### Other MCP Clients
 
 ```json
 {
@@ -223,48 +255,6 @@ npm run test:e2e
 ```
 
 The test will start the MCP server, list tools, and perform a search query.
-
-### Codex CLI
-
-```bash
-# Add MCP server
-codex mcp add gemini-search --env GEMINI_API_KEY=your-key -- node /path/to/dist/index.js
-
-# Test
-codex exec --dangerously-bypass-approvals-and-sandbox "what is MCP protocol?"
-```
-
-### Claude Code
-
-```bash
-claude mcp add gemini-search -e GEMINI_API_KEY=your-key -- node /path/to/dist/index.js
-```
-
-### OpenCode
-
-Add to `~/.config/opencode/config.json`:
-
-```json
-{
-  "mcp": {
-    "gemini-search": {
-      "command": "node",
-      "args": ["/path/to/dist/index.js"],
-      "env": {
-        "GEMINI_API_KEY": "your-key"
-      }
-    }
-  }
-}
-```
-
-### Kilo / Plik
-
-Refer to the client's MCP server configuration docs, using:
-
-- **Command**: `node`
-- **Args**: `/path/to/dist/index.js`
-- **Env**: set the authentication environment variable per [Authentication](#authentication)
 
 ## CLI Usage
 
