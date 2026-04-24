@@ -74,19 +74,11 @@ Add to `~/.config/opencode/config.json`:
 
 #### Other MCP Clients
 
-```json
-{
-  "mcpServers": {
-    "gemini-search": {
-      "command": "npx",
-      "args": ["@kybrcore/gemini-search-mcp"],
-      "env": {
-        "GEMINI_API_KEY": "your-api-key"
-      }
-    }
-  }
-}
-```
+Refer to your client's MCP configuration documentation. Use:
+
+- **Command**: `npx`
+- **Args**: `["@kybrcore/gemini-search-mcp"]`
+- **Env**: set authentication variables per [Authentication](#authentication)
 
 ## Authentication
 
