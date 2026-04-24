@@ -15,11 +15,45 @@ An MCP (Model Context Protocol) server providing real-time Google Search via the
 
 ## Installation
 
+### From npm (Recommended)
+
+```bash
+npm install -g @kybrcore/gemini-search-mcp
+```
+
+### From Source
+
 ```bash
 git clone https://github.com/kybrcore/gemini-search-mcp.git
 cd gemini-search-mcp
 npm install
 npm run build
+```
+
+## Usage
+
+### CLI
+
+```bash
+gemini-search "your search query"
+```
+
+### MCP Server
+
+Configure in your MCP client (Claude Desktop, Codex CLI, etc.):
+
+```json
+{
+  "mcpServers": {
+    "gemini-search": {
+      "command": "npx",
+      "args": ["@kybrcore/gemini-search-mcp"],
+      "env": {
+        "GEMINI_API_KEY": "your-api-key"
+      }
+    }
+  }
+}
 ```
 
 ## Authentication
@@ -36,9 +70,9 @@ Get your key from [Google AI Studio](https://aistudio.google.com/api-keys).
 ```json
 {
   "mcpServers": {
-    "gemini-search-mcp": {
-      "command": "node",
-      "args": ["/path/to/dist/index.js"],
+    "gemini-search": {
+      "command": "npx",
+      "args": ["@kybrcore/gemini-search-mcp"],
       "env": {
         "GEMINI_API_KEY": "your-gemini-api-key"
       }
@@ -54,9 +88,9 @@ Uses Google Cloud billing ($300 free credits). Get an API key from [Google Cloud
 ```json
 {
   "mcpServers": {
-    "gemini-search-mcp": {
-      "command": "node",
-      "args": ["/path/to/dist/index.js"],
+    "gemini-search": {
+      "command": "npx",
+      "args": ["@kybrcore/gemini-search-mcp"],
       "env": {
         "USE_VERTEX_AI": "true",
         "VERTEX_EXPRESS_MODE_API_KEY": "your-vertex-express-api-key"
@@ -78,9 +112,9 @@ gcloud config set project your-project-id
 ```json
 {
   "mcpServers": {
-    "gemini-search-mcp": {
-      "command": "node",
-      "args": ["/path/to/dist/index.js"],
+    "gemini-search": {
+      "command": "npx",
+      "args": ["@kybrcore/gemini-search-mcp"],
       "env": {
         "USE_VERTEX_AI": "true",
         "GOOGLE_CLOUD_PROJECT": "your-project-id",
@@ -98,9 +132,9 @@ Create a service account in [Google Cloud Console](https://console.cloud.google.
 ```json
 {
   "mcpServers": {
-    "gemini-search-mcp": {
-      "command": "node",
-      "args": ["/path/to/dist/index.js"],
+    "gemini-search": {
+      "command": "npx",
+      "args": ["@kybrcore/gemini-search-mcp"],
       "env": {
         "USE_VERTEX_AI": "true",
         "GOOGLE_CLOUD_PROJECT": "your-project-id",
