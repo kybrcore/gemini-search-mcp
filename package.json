@@ -1,0 +1,45 @@
+{
+  "name": "gemini-search-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for real-time Google Search via Gemini API with search grounding (AI Studio, Vertex AI Express Mode, ADC, Service Account)",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "gemini-search-mcp": "./dist/index.js",
+    "gemini-search": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "dev:cli": "tsx src/cli.ts",
+    "start": "node dist/index.js",
+    "test": "tsx test/unit.ts",
+    "test:e2e": "tsx test/e2e.ts"
+  },
+  "keywords": [
+    "mcp",
+    "google",
+    "search",
+    "gemini",
+    "web-search",
+    "grounded-search",
+    "vertex-ai",
+    "agent-platform"
+  ],
+  "author": "kybrcore",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kybrcore/gemini-search-mcp.git"
+  },
+  "dependencies": {
+    "@google/genai": "^1.50.1",
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.17",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}
